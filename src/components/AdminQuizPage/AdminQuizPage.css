@@ -1,0 +1,19 @@
+.admin-quiz-container {
+  background: #242943;
+  min-height: 100vh;
+}
+
+.next-btn,
+.next-btn:hover,
+.next-btn:focus {
+  color: #242943;
+  background-color: white;
+  border: 0;
+  text-align: center;
+  float: right;
+}
+
+.next-btn:disabled {
+  background-color: gainsboro;
+  color: white;
+}

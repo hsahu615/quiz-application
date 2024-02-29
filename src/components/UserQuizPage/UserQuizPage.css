@@ -1,0 +1,25 @@
+.user-quiz-container {
+  background: #242943;
+  min-height: 100vh;
+}
+
+.start-btn,
+.start-btn:hover,
+.start-btn:focus {
+  color: #242943;
+  background-color: white;
+  border: 0;
+  margin: 5rem 0rem;
+}
+
+.start-btn:disabled {
+  background-color: #f3f3f3;
+  color: #242943;
+}
+
+.options-box:nth-child(odd) {
+  text-align: start;
+}
+.options-box:nth-child(even) {
+  text-align: end;
+}

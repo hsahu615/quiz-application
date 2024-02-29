@@ -1,0 +1,54 @@
+.dashboard-container {
+  background: #242943;
+  min-height: 100vh;
+}
+
+.dashboard-content-1,
+.dashboard-content-2 {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-description-top {
+  padding: 1vh 0.5vw 2vh 0;
+  margin-bottom: 2vh;
+  border-bottom: 2px solid white;
+}
+
+.dashboard-description-bottom > div > p {
+  font-weight: 500;
+}
+
+.dashboard-buttons {
+  border: 2px solid white;
+  color: white;
+  margin-left: 0.5rem;
+  background-color: unset;
+}
+
+.dashboard-buttons:hover {
+  border: 2px solid #9bf1ff;
+  color: #9bf1ff;
+}
+
+.dashboard-content-1,
+.dashboard-content-2 {
+  transition: 0.5s all ease-in-out;
+}
+
+.roomid-input-box {
+  border: none;
+  outline: none;
+  background-color: unset;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+.roomid-input-box::placeholder {
+  color: white;
+}
+
+.back-btn {
+  cursor: pointer;
+}

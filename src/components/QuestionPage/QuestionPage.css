@@ -1,0 +1,40 @@
+.question-page-container {
+  background: #242943;
+  min-height: 100vh;
+}
+
+.add-questions-container {
+  flex: 1 1 auto;
+}
+
+.question-submit-btn,
+.question-submit-btn:hover,
+.question-submit-btn:focus {
+  color: #242943;
+  background-color: white;
+  border: 0;
+  text-align: center;
+  float: right;
+}
+
+.add-question-btn {
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  float: right;
+  border-radius: 50%;
+}
+
+.start-btn,
+.start-btn:hover,
+.start-btn:focus {
+  color: #242943;
+  background-color: white;
+  border: 0;
+  margin: 5rem 0rem;
+}
+
+.start-btn:disabled {
+  background-color: #f3f3f3;
+  color: #242943;
+}

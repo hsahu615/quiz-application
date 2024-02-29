@@ -1,0 +1,28 @@
+.navbar-container {
+  height: 10vh;
+}
+
+.title-light {
+  background-color: white;
+  color: black;
+}
+
+.logo-title {
+  color: white;
+  letter-spacing: 0.3rem;
+}
+
+.log-out-btn {
+  border: 2px solid white;
+  color: white;
+  margin-left: 0.5rem;
+  background-color: transparent;
+}
+
+.log-out-btn:hover,
+.log-out-btn:focus,
+.log-out-btn:active {
+  border: 2px solid #9bf1ff;
+  color: #9bf1ff;
+  background-color: unset;
+}

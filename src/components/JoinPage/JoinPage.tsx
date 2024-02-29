@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './JoinPage.css';
 import AuthenticationService from '../../services/AuthenticationService';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -38,20 +39,42 @@ const JoinPage = () => {
   };
 
   const login = async () => {
-    const response: any = await authenticationService.login(loginForm);
-    if (response.status == 200) {
-      navigate('/dashboard');
+    const { status, message }: any = await authenticationService.login(
+      loginForm
+    );
+    console.log(status, message);
+    if (status) {
+      handleSuccess(message);
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
     } else {
-      alert('Invalid Credentials');
+      handleError(message);
     }
+  };
+
+  const handleSuccess = (message: any) => {
+    toast.success(message, {
+      position: 'bottom-center',
+    });
+  };
+
+  const handleError = (message: any) => {
+    toast.error(message, {
+      position: 'bottom-center',
+    });
   };
 
   const register = async () => {
     const response: any = await authenticationService.register(registerForm);
-    if (response.status == 200) {
-      console.log('Registered Successfully');
+    const { message, status } = response;
+    if (status) {
+      handleSuccess(message);
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
     } else {
-      alert('Registration failed');
+      handleError(message);
     }
   };
 
@@ -65,42 +88,47 @@ const JoinPage = () => {
         {shiftForm ? (
           <div className='col-md-6 px-5'>
             <h2 className='text-center'>Login</h2>
-            <input
-              id='user-name'
-              className='bg-transparent form-control w-100 join-input my-3'
-              placeholder='Username'
-              type='text'
-              onChange={(e) =>
-                setLoginForm({ ...loginForm, username: e.target.value })
-              }
-              onBlur={(e) =>
-                (e.target.style.borderColor = 'rgba(0, 0, 0, 0.4)')
-              }
-              onFocus={(e) => (e.target.style.borderColor = 'skyblue')}
-            />
-            <input
-              id='password'
-              className='bg-transparent form-control w-100 join-input my-3'
-              placeholder='Password'
-              type='password'
-              onChange={(e) =>
-                setLoginForm({ ...loginForm, password: e.target.value })
-              }
-              onFocus={(e) => (e.target.style.borderColor = 'skyblue')}
-              onBlur={(e) =>
-                (e.target.style.borderColor = 'rgba(0, 0, 0, 0.4)')
-              }
-            />
-            <button
-              className='rounded-pill px-4 py-2 login-btn-dark'
-              style={{ backgroundColor: loginPage ? 'skyblue' : 'transparent' }}
-              onClick={login}
-            >
-              Login
-            </button>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <input
+                id='user-name'
+                className='bg-transparent form-control w-100 join-input my-3'
+                placeholder='Username'
+                type='text'
+                onChange={(e) =>
+                  setLoginForm({ ...loginForm, username: e.target.value })
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderColor = 'rgba(0, 0, 0, 0.4)')
+                }
+                onFocus={(e) => (e.target.style.borderColor = 'skyblue')}
+              />
+              <input
+                id='password'
+                className='bg-transparent form-control w-100 join-input my-3'
+                placeholder='Password'
+                type='password'
+                onChange={(e) =>
+                  setLoginForm({ ...loginForm, password: e.target.value })
+                }
+                onFocus={(e) => (e.target.style.borderColor = 'skyblue')}
+                onBlur={(e) =>
+                  (e.target.style.borderColor = 'rgba(0, 0, 0, 0.4)')
+                }
+              />
+              <button
+                className='rounded-pill px-4 py-2 login-btn-dark'
+                type='submit'
+                style={{
+                  backgroundColor: loginPage ? 'skyblue' : 'transparent',
+                }}
+                onClick={login}
+              >
+                Login
+              </button>
+            </form>
           </div>
         ) : (
-          <div className='col-md-6 px-5'>
+          <div className='col-md-6 text-center px-5'>
             <h4 className='text-white'>Already an User?</h4>
             <button
               className='rounded-pill px-4 py-2 login-btn'
@@ -115,7 +143,7 @@ const JoinPage = () => {
         )}
         {/* -----------------------------REGISTER FORM -------------------------- */}
         {shiftForm ? (
-          <div className='col-md-6 px-5'>
+          <div className='col-md-6 text-center px-5'>
             <h4 className='text-white'>Don't have an account?</h4>
             <button
               className='rounded-pill px-4 py-2 login-btn'
@@ -202,6 +230,7 @@ const JoinPage = () => {
           }}
         ></div>
       </div>
+      <Toaster />
     </div>
   );
 };
